@@ -26,13 +26,9 @@
 		/* Layout formatting definitions */
 
 		--top-bar-height: 48px;
-
 		--chat-form-height: calc(var(--control-panel-height) + 32px);
-
 		--chat-margin-width: 20px;
-
 		--control-panel-height: 49px;
-
 		--element-min-width: 70px;
 
 		--guilds-width: var(--element-min-width);
@@ -51,6 +47,11 @@
 /* MISC */
 
 
+	/* Move chat over a little to avoid overlaps */
+	.da-chatContent {
+		margin-left: 24px;
+	}
+
 	/* Hide Discord Gift Nitro and Tenor GIF buttons */
 	.da-channelTextArea .da-inner .da-buttons > :nth-child(1),
 	.da-channelTextArea .da-inner .da-buttons > :nth-child(2) {
@@ -67,73 +68,56 @@
 /* STICKY SIDEBAR PANELS */
 
 
-	/* Sidebar panels */
-		.da-container .da-base {
-			left: 0px;
+	/* Combined user control panel and voice call panel */
+		.da-baseLayer .da-sidebar {
+			overflow: visible;
+		}
+		.da-baseLayer .da-sidebar #channels {
+			padding-bottom: calc(var(--control-panel-height) * 4);
 		}
 
-		.da-container .da-base > :first-child {
-			padding-left: 72px;
-		}
-/*
-		.da-guilds .da-sidebar .da-panels,
-		#channels .da-sidebar .da-panels {
+		.da-sidebar .da-panels[aria-label="User area"] {
 			transform: translate(calc(1 - var(--guild-channels-translate-length)));
 			transition: all 500ms ease;
 			position: absolute;
 			z-index: 5000;
-			left: var(--guilds-channels-max-width) !important;
-			bottom: 0px !important;
+			left: var(--guilds-channels-max-width);
+			bottom: 0px;
+			width: var(--guild-channels-max-width);
 		}
 
-		.da-guilds .da-sidebar:hover .da-panels,
-		#channels .da-sidebar:hover .da-panels {
+		.da-sidebar .da-panels[aria-label="User area"] .da-container {
+			width: 135px;
+			margin: auto;
+		}
+
+		.da-sidebar:hover .da-panels[aria-label="User area"] {
 			transform: translate(calc(var(--guild-channels-translate-length)));
 		}
 
-		.da-sidebar .da-panels[aria-label="User area"] .da-container {
-			height: var(--control-panel-height) !important;
-			max-width: var(--guild-channels-max-width) !important;
-		}
-*/
-	/* Voice call information panel */
-	/*
-		.da-sidebar .da-panels[aria-label="User area"] .da-container {
-			padding: 0 10px !important;
-			border-bottom: 0px solid var(--discord-td-bg-2-color) !important;
-		}
-
-	/* Control panel */
-	/*
-		.da-sidebar .da-panels[aria-label="User area"] .da-container {
-			width: var(--guild-channels-max-width) !important;
-			height: var(--control-panel-height) !important;
-			padding: 0 !important;
-			margin-bottom: 0px;
-			-webkit-box-shadow: none;
-			box-shadow: none;
-		}
-
-		/* Account details */
-		/*
-		.da-sidebar .da-panels[aria-label="User area"] .da-container .da-nameTag {
-			display: none;
-		}
-		*/
-
-		/* Mute, deafen, user settings buttons */
-
-		/* TODO: APPLY TO USER CONTROL PANEL AND VOICE CALL PANEL INDIVIDUALLY */
-
-		.da-baseLayer .da-sidebar {
-			overflow: visible;
-		}
-
 		.da-sidebar .da-panels[aria-label="User area"] {
-			left: calc(var(--guilds-width) + 5px) !important;
-			bottom: 10px !important;
+			left: calc(0px - var(--guild-channels-translate-length));
+			bottom: 0px;
 			position: fixed;
+			z-index: 99999;
 		}
+
+		.da-sidebar .da-panels[aria-label="User area"] .da-actionButtons {
+			flex-direction: column;
+			margin-top: 9px;
+			margin-bottom: 1px;
+		}
+
+
+		.da-sidebar .da-panels[aria-label="User area"] .da-actionButtons .da-button {
+			margin-right: 0;
+			margin-bottom: 4px;
+		}
+
+		.da-sidebar .da-panels[aria-label="User area"] .horizontal-1ae9ci>.flex-1xMQg5, .horizontal-1ae9ci>.flexChild-faoVW3 {
+			margin-left: 0;
+		}
+
 
 
 /* STICKY CHAT FORM */
@@ -262,6 +246,13 @@
 		}
 		.da-chat .da-messagesWrapper .containerCozy-jafyvG .container-1YxwTf {
 			margin-left: 60px !important;
+		}
+		.da-chat .da-message {
+			padding-left: 90px;
+		}
+		.da-chat .da-message .da-avatar {
+			top: 5px;
+			left: 12px;
 		}
 
 		/* Search Results */
@@ -440,12 +431,6 @@
 				.da-sidebar .da-scroller {
 					padding-left: 6px;
 				}
-				/* Selected channel indicator */
-/*
-			    .da-sidebar .da-selected {
-					background-color: hsla(0,0%,100%,0.25);
-				}
-*/
 				/* Unread messages indicator */
 				.da-sidebar .da-unread {
 					display: none;
@@ -522,6 +507,13 @@
 				.da-containerDefault .da-list .icon-3BcwQu {
 					width: 16px;
 					height: 16px;
+				}
+
+				.da-sidebar .da-voiceUserSummary {
+					padding-left: 140px;
+				}
+				.da-sidebar:hover .da-voiceUserSummary {
+					padding-left: initial;
 				}
 
 		/* Hovered */
